@@ -1,0 +1,123 @@
+<template>
+    <div class="d-flex justify-content-center align-content-center">
+        <div class="d-flex justify-content-around">
+            <form @submit.prevent="sendForm" style="text-align: left" method="post">
+                <h4>Delete event</h4>
+                <label>Select event</label>
+                <select @change="getEvent" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="eventId">
+                    <option v-for="event in events" :key="event.id">{{event.id}}</option>
+                </select>
+                <label>Creator ID : </label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="creatorId" disabled>
+                    <option v-for="user in user" :key="user.id">{{user.id}}</option>
+                </select>
+                <label>Duration</label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" v-model="duration" required readonly>
+                </div>
+                <label>Event scope</label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="eventScope" disabled>
+                    <option>PUBLIC</option>
+                    <option>PRIVATE</option>
+                    <option>SHARED</option>
+                </select>
+                <label> Starts at</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="height: 100%"><font-awesome-icon :icon="['fas', 'calendar']"></font-awesome-icon></span>
+                    </div>
+                    <input type="datetime-local" class="form-control" v-model="startsAt" required readonly>
+                </div>
+                <label>Invitees</label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="invitees" multiple disabled>
+                    <option v-for="user in user" :key="user.id">{{user.id}}</option>
+                </select>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "EventsDelete",
+        data: function () {
+            return {
+                creatorId: "",
+                duration: "",
+                eventScope: "",
+                invitees: [],
+                startsAt: "",
+                user: "",
+                events: "",
+                eventId: ""
+            }
+        },methods: {
+            async sendForm() {
+
+                fetch("http://20.72.149.70/events/v1/events/" + this.eventId, {
+                    method: "DELETE",
+                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
+                }).then(()=>{
+                    this.$router.push("/events/read");
+                });
+            },
+            async getEvent() {
+                const utf8Decoder = new TextDecoder("utf-8");
+
+                fetch("http://20.72.149.70/events/v1/events/" + this.eventId, {
+                    method: "GET",
+                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                }).then((response) => {
+                    const reader = response.body.getReader();
+                    reader.read().then(({done, value}) => {
+                        if (!done) {
+                            let event = JSON.parse(utf8Decoder.decode(value, {stream: true}));
+                            this.creatorId = event.creatorId;
+                            this.duration = event.duration;
+                            this.eventScope = event.eventScope;
+                            this.startsAt = this.getCorrectDate(new Date(event.startsAt));
+                            this.invitees = event.invitees.map(value => {
+                                return value.userId.toString();
+                            });
+                        }
+                    });
+                });
+            },
+            getCorrectDate(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                let day = date.getDay() + 1 < 10 ? "0" + (date.getDay() + 1) : date.getDay() + 1;
+                let hour = date.getHours() < 10 ? "0" + (date.getHours()) : date.getHours();
+                let minute = date.getMinutes() < 10 ? "0" + (date.getMinutes()) : date.getMinutes();
+                return year + "-" + month + "-" + day + "T" + hour + ":" + minute;
+            },
+        },mounted() {
+            const utf8Decoder = new TextDecoder("utf-8");
+            fetch("http://20.72.149.70/users/v1/users", {
+                method: "GET",
+                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+            }).then((response) => {
+                const reader = response.body.getReader();
+                reader.read().then(({done, value}) => {
+                    if (!done)
+                        this.user = JSON.parse(utf8Decoder.decode(value, {stream: true}));
+                });
+            });
+            fetch("http://20.72.149.70/events/v1/events", {
+                method: "GET",
+                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+            }).then((response) => {
+                const reader = response.body.getReader();
+                reader.read().then(({done, value}) => {
+                    if (!done)
+                        this.events = JSON.parse(utf8Decoder.decode(value, {stream: true}));
+                });
+            });
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
