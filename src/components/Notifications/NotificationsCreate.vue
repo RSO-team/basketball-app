@@ -53,7 +53,7 @@
         methods: {
             async sendForm() {
                 if(this.userId===""){
-                    fetch("http://20.72.149.70/notifications/v1/notifications", {
+                    fetch(`${process.env.VUE_APP_API_URL}/notifications/v1/notifications`, {
                         method: "POST",
                         headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json', "apiToken": this.apiToken},
                         body: JSON.stringify({
@@ -71,7 +71,7 @@
             }
         },mounted(){
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/users/v1/users", {
+            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

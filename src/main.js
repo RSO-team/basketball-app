@@ -40,7 +40,7 @@ import MatchmakingDelete from "@/components/Matchmaking/MatchmakingDelete";
 
 import NotificationRead from "@/components/Notifications/NotificationRead";
 import NotificationsCreate from "@/components/Notifications/NotificationsCreate";
-
+import Home from "@/components/Home/Home";
 
 library.add(faUser, faBell, faCalendar, faBasketballBall, faRunning,faTrophy,faCrosshairs,faChartBar, faVideo,faPlus, faEnvelope);
 
@@ -50,37 +50,44 @@ Vue.use(VueRouter);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 const routes = [
+  {path: '/', component: Home, name: 'Home'},
   {path: '/users/create', component: UsersCreate, name: 'UsersCreate'},
   {path: '/users/read', component: UsersRead, name: 'UsersRead'},
   {path: '/users/update', component: UsersUpdate, name: 'UsersUpdate'},
   {path: '/users/delete', component: UserDelete, name: 'UserDelete'},
 
   {path: '/videos/create', component: VideosCreate, name: 'VideosCreate'},
+  {path: '/videos', component: VideosRead, name: 'VideosRead'},
   {path: '/videos/read', component: VideosRead, name: 'VideosRead'},
   {path: '/videos/update', component: VideosUpdate, name: 'VideosUpdate'},
   {path: '/videos/delete', component: VideosDelete, name: 'VideosDelete'},
 
   {path: '/activity/create', component: ActivityTrackingCreate, name: 'ActivityCreate'},
+  {path: '/activity', component: ActivityTrackingRead, name: 'ActivityRead'},
   {path: '/activity/read', component: ActivityTrackingRead, name: 'ActivityRead'},
   {path: '/activity/update', component: ActivityTrackingUpdate, name: 'ActivityUpdate'},
   {path: '/activity/delete', component: ActivityTrackingDelete, name: 'ActivityDelete'},
 
   {path: '/events/create', component: EventsCreate, name: 'EventsCreate'},
+  {path: '/events', component: EventsRead, name: 'EventsRead'},
   {path: '/events/read', component: EventsRead, name: 'EventsRead'},
   {path: '/events/update', component: EventsUpdate, name: 'EventsUpdate'},
   {path: '/events/delete', component: EventsDelete, name: 'EventsDelete'},
 
   {path: '/exercises/create', component: ExercisesCreate, name: 'ExercisesCreate'},
+  {path: '/exercises', component: ExercisesRead, name: 'ExercisesRead'},
   {path: '/exercises/read', component: ExercisesRead, name: 'ExercisesRead'},
   {path: '/exercises/update', component: ExercisesUpdate, name: 'ExercisesUpdate'},
   {path: '/exercises/delete', component: ExercisesDelete, name: 'ExercisesDelete'},
 
   {path: '/matchmaking/create', component:MatchmakingCreate, name: 'MatchmakingCreate'},
+  {path: '/matchmaking', component: MatchmakingRead, name: 'MatchmakingRead'},
   {path: '/matchmaking/read', component: MatchmakingRead, name: 'MatchmakingRead'},
   {path: '/matchmaking/update', component: MatchmakingUpdate, name: 'MatchmakingUpdate'},
   {path: '/matchmaking/delete', component: MatchmakingDelete, name: 'MatchmakingDelete'},
 
   {path: '/notifications/create', component:NotificationsCreate, name: 'NotificationsCreate'},
+  {path: '/notifications', component: NotificationRead, name: 'NotificationRead'},
   {path: '/notifications/read', component: NotificationRead, name: 'NotificationRead'},
 ];
 const router = new VueRouter({

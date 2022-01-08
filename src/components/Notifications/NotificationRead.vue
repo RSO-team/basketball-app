@@ -26,7 +26,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/notifications/v1/notifications", {
+            fetch(`${process.env.VUE_APP_API_URL}/notifications/v1/notifications`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json', "apiToken": "htn12kss3"}
             }).then((response) => {

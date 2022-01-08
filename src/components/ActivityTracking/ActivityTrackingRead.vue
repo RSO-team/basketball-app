@@ -19,7 +19,7 @@
             }
         },mounted(){
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/activity/v1/activities", {
+            fetch(`${process.env.VUE_APP_API_URL}/activity/v1/activities`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

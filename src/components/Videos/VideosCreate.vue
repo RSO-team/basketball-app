@@ -62,7 +62,7 @@
                     return {description: value}
                 });
 
-                const res = await fetch('http://20.72.149.70/videos/v1/videos', {
+                const res = await fetch(`${process.env.VUE_APP_API_URL}/videos/v1/videos`, {
                     method: "POST",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                     body: JSON.stringify({

@@ -30,7 +30,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/matchmaking/v1/matchmaking", {
+            fetch(`${process.env.VUE_APP_API_URL}/matchmaking/v1/matchmaking`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

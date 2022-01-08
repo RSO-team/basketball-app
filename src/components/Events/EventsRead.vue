@@ -32,7 +32,7 @@
             }
         },mounted(){
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/events/v1/events", {
+            fetch(`${process.env.VUE_APP_API_URL}/events/v1/events`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

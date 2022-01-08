@@ -51,7 +51,7 @@
         methods: {
             async sendForm() {
                 console.log();
-                 await fetch('http://20.72.149.70/users/v1/users', {
+                 await fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
                     method: "POST",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                     body: JSON.stringify({

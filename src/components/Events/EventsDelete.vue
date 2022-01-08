@@ -54,8 +54,7 @@
             }
         },methods: {
             async sendForm() {
-
-                fetch("http://20.72.149.70/events/v1/events/" + this.eventId, {
+                fetch(`${process.env.VUE_APP_API_URL}/events/v1/events/${this.eventId}`, {
                     method: "DELETE",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
                 }).then(()=>{
@@ -65,7 +64,7 @@
             async getEvent() {
                 const utf8Decoder = new TextDecoder("utf-8");
 
-                fetch("http://20.72.149.70/events/v1/events/" + this.eventId, {
+                fetch(`${process.env.VUE_APP_API_URL}/events/v1/events/${this.eventId}`, {
                     method: "GET",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
                 }).then((response) => {
@@ -94,7 +93,7 @@
             },
         },mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch("http://20.72.149.70/users/v1/users", {
+            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {
@@ -104,7 +103,7 @@
                         this.user = JSON.parse(utf8Decoder.decode(value, {stream: true}));
                 });
             });
-            fetch("http://20.72.149.70/events/v1/events", {
+            fetch(`${process.env.VUE_APP_API_URL}/events/v1/events`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

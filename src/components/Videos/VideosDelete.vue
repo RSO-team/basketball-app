@@ -58,7 +58,7 @@
             async getVideo() {
                 const utf8Decoder = new TextDecoder("utf-8");
 
-                await fetch('http://20.72.149.70/videos/v1/videos/' + this.id, {
+                await fetch(`${process.env.VUE_APP_API_URL}/videos/v1/videos/${this.id}`, {
                     method: "GET",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then(response => {
@@ -88,7 +88,7 @@
                 return year + "-" + month +"-"+day;
             },
             async sendForm() {
-                await fetch('http://20.72.149.70/users/v1/users/'+this.id, {
+                await fetch(`${process.env.VUE_APP_API_URL}/users/v1/users/${this.id}`, {
                     method: "DELETE",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then((response) => {
@@ -99,7 +99,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch('http://20.72.149.70/users/v1/users', {
+            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
                 method: "GET",
                 headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
             }).then((response) => {
