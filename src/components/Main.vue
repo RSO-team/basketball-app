@@ -72,10 +72,6 @@
                         <router-link :to="'/'+selected +'/read/'" class="btn btn-primary" replace>READ</router-link>
                         <router-link :to="'/'+selected + '/update/'" class="btn btn-warning" style="color: white" replace> UPDATE</router-link>
                         <router-link :to="'/'+selected +'/delete/'" class="btn btn-danger " replace>DELETE</router-link>
-                        <div class="form-check form-switch" style="align-self: center;">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                            <label class="form-check-label" for="flexSwitchCheckChecked" style="color: white">Toggle sick</label>
-                        </div>
                     </div>
                 </div>
                 <router-view class="content">
