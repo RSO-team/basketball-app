@@ -45,7 +45,6 @@
                 from: "",
                 to: "",
                 content: "",
-                apiToken: "htn12kss3",
                 userId: "",
                 users: []
             }
@@ -53,9 +52,13 @@
         methods: {
             async sendForm() {
                 if(this.userId===""){
-                    fetch(`${process.env.VUE_APP_API_URL}/notifications/v1/notifications`, {
+                    fetch(`${process.env.VUE_APP_API_URL_NOT}/v1/notifications`, {
                         method: "POST",
-                        headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json', "apiToken": this.apiToken},
+                        headers: {
+                          "Access-Control-Allow-Origin": "*",
+                          "content-type": 'application/json',
+                          "apiToken": process.env.VUE_APP_API_TOKEN
+                        },
                         body: JSON.stringify({
                             from: this.from,
                             to: this.to,
@@ -71,7 +74,7 @@
             }
         },mounted(){
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
+            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

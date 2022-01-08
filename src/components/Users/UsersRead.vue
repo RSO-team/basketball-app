@@ -27,7 +27,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
+            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

@@ -69,7 +69,7 @@
             },
             async sendForm(){
                 this.steps = this.getSteps();
-                fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises`, {
+                fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises`, {
                     method: "POST",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
                     body: JSON.stringify({

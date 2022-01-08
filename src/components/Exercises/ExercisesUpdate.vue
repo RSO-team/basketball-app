@@ -60,7 +60,7 @@
         methods: {
             getExercise: function () {
                 const utf8Decoder = new TextDecoder("utf-8");
-                fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises/${this.id}`, {
+                fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "GET",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
                 }).then((response) => {
@@ -85,7 +85,7 @@
             },
             async sendForm() {
                 this.steps = this.getSteps();
-                fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises/${this.id}`, {
+                fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "PUT",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
                     body: JSON.stringify({
@@ -102,7 +102,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises`, {
+            fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

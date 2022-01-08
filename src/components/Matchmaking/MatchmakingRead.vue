@@ -30,7 +30,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/matchmaking/v1/matchmaking`, {
+            fetch(`${process.env.VUE_APP_API_URL_MCH}/v1/matchmaking`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

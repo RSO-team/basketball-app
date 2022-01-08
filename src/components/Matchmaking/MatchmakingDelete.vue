@@ -51,7 +51,7 @@
             },
             async getMatch(){
                 const utf8Decoder = new TextDecoder("utf-8");
-                await fetch(`${process.env.VUE_APP_API_URL}/matchmaking/v1/matchmaking/${this.matchId}`, {
+                await fetch(`${process.env.VUE_APP_API_URL_MCH}/v1/matchmaking/${this.matchId}`, {
                     method: "GET",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then((response) => {
@@ -70,7 +70,7 @@
                 });
             },
             async sendForm() {
-                await fetch(`${process.env.VUE_APP_API_URL}/matchmaking/v1/matchmaking/${this.matchId}`, {
+                await fetch(`${process.env.VUE_APP_API_URL_MCH}/v1/matchmaking/${this.matchId}`, {
                     method: "DELETE",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'}
                 })
@@ -78,7 +78,7 @@
         }
         ,mounted(){
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
+            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {
@@ -88,7 +88,7 @@
                         this.user = JSON.parse(utf8Decoder.decode(value, {stream: true}));
                 });
             });
-            fetch(`${process.env.VUE_APP_API_URL}/matchmaking/v1/matchmaking`, {
+            fetch(`${process.env.VUE_APP_API_URL_MCH}/v1/matchmaking`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

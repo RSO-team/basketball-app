@@ -26,9 +26,13 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/notifications/v1/notifications`, {
+            fetch(`${process.env.VUE_APP_API_URL_NOT}/v1/notifications`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json', "apiToken": "htn12kss3"}
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json',
+                    "apiToken": process.env.VUE_APP_API_TOKEN
+                }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

@@ -58,7 +58,7 @@
         },methods: {
             getExercise: function () {
                 const utf8Decoder = new TextDecoder("utf-8");
-                fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises/${this.id}`, {
+                fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "GET",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
                 }).then((response) => {
@@ -74,7 +74,7 @@
                 });
             },
             async sendForm() {
-                fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises/${this.id}`, {
+                fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "DELETE",
                     headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
 
@@ -85,7 +85,7 @@
             }
         }, mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/exercises/v1/exercises`, {
+            fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises`, {
                 method: "GET",
                 headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
             }).then((response) => {

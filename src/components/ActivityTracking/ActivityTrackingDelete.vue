@@ -52,7 +52,7 @@
         methods: {
             getActivity: function () {
                 const utf8Decoder = new TextDecoder("utf-8");
-                fetch(`${process.env.VUE_APP_API_URL}/activity/v1/activities/${this.activityId}`, {
+                fetch(`${process.env.VUE_APP_API_URL_ATR}/v1/activities/${this.activityId}`, {
                     method: "GET",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then((response) => {
@@ -68,7 +68,7 @@
                 });
             },
             sendForm : function () {
-                fetch(`${process.env.VUE_APP_API_URL}/activity/v1/activities/${this.activityId}`, {
+                fetch(`${process.env.VUE_APP_API_URL_ATR}/v1/activities/${this.activityId}`, {
                     method: "DELETE",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then(()=>{
@@ -78,7 +78,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
+            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
                 headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
             }).then((response) => {
@@ -90,7 +90,7 @@
                         });
                 });
             });
-            fetch(`${process.env.VUE_APP_API_URL}/activity/v1/activities`, {
+            fetch(`${process.env.VUE_APP_API_URL_ATR}/v1/activities`, {
                 method: "GET",
                 headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
             }).then((response) => {

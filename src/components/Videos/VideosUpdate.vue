@@ -61,7 +61,7 @@
             async getVideo() {
                 const utf8Decoder = new TextDecoder("utf-8");
 
-                await fetch(`${process.env.VUE_APP_API_URL}/videos/v1/videos/${this.id}`, {
+                await fetch(`${process.env.VUE_APP_API_URL_VID}/v1/videos/${this.id}`, {
                     method: "GET",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                 }).then(response => {
@@ -98,7 +98,7 @@
                     return {description: value}
                 });
 
-                await fetch(`${process.env.VUE_APP_API_URL}/videos/v1/videos/${this.id}`, {
+                await fetch(`${process.env.VUE_APP_API_URL_VID}/v1/videos/${this.id}`, {
                     method: "PUT",
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                     body: JSON.stringify({
@@ -115,7 +115,7 @@
         },
         mounted() {
             const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL}/users/v1/users`, {
+            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
                 headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
             }).then((response) => {
