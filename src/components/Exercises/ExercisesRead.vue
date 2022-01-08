@@ -7,8 +7,8 @@
                 <ul class="d-flex flex-column">
                     <p><b>Steps: </b></p>
                     <li v-for="tag in item.steps" :key="(tag.description, tag.id)">
-                        <p><b>Name:</b>{{tag.name}}</p>
-                        <p><b>Description:</b>{{tag.description}}</p>
+                        <p><b>Name: </b>{{tag.name}}</p>
+                        <p><b>Description: </b>{{tag.description}}</p>
                     </li>
                 </ul>
             </li>
@@ -21,7 +21,7 @@
         name: "ExercisesRead",
         data: function () {
             return{
-                exercises: ""
+                exercises: []
             }
         },methods:{
             readableString: function (s) {
@@ -50,8 +50,6 @@
 <style scoped>
     #content {
         padding: 20px;
-        min-height: 80%;
-        max-height: 90%;
         overflow-y: auto;
     }
 

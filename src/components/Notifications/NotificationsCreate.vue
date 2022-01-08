@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-content-center">
+    <div class="d-flex justify-content-center align-content-center mt-5">
         <div class="d-flex justify-content-around">
             <form style="text-align: left" method="post" @submit.prevent="sendForm">
                 <h4>Create new notification</h4>

@@ -1,11 +1,11 @@
 <template>
-    <div class="d-flex justify-content-center align-content-center">
+    <div class="d-flex justify-content-center align-content-center mt-5">
         <div class="d-flex justify-content-around">
             <form @submit.prevent="sendForm" style="text-align: left" method="post">
                 <h4>Create new event</h4>
                 <label>Creator ID : </label>
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="creatorId" >
-                    <option v-for="user in user" :key="user.id">{{user.id}}</option>
+                    <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }} {{ user.surname }}</option>
                 </select>
                 <label>Duration</label>
                 <div class="input-group mb-3">
@@ -26,7 +26,7 @@
                 </div>
                 <label>Invitees</label>
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="invitees" multiple>
-                    <option v-for="user in user" :key="user.id">{{user.id}}</option>
+                    <option v-for="user in users" :key="user.id" :value="user">{{ user.name }} {{ user.surname }}</option>
                 </select>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
@@ -39,48 +39,43 @@
         name: "EventsCreate",
         data: function () {
             return {
-                creatorId: "",
-                duration:"",
-                eventScope: "",
+                creatorId: null,
+                duration: 0,
+                eventScope: 'PUBLIC',
                 invitees: [],
-                startsAt:"",
-                user : ""
+                startsAt: new Date(),
+                users : []
             }
         },
         methods:{
             async sendForm() {
-                console.log();
-                await fetch(`${process.env.VUE_APP_API_URL_EVN}/v1/events`, {
-                    method: "POST",
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
-                    body: JSON.stringify({
-                        creatorId: this.creatorId,
-                        duration: this.duration,
-                        eventScope: this.eventScope,
-                        startsAt: new Date(this.startsAt).toJSON(),
-                        invitees: this.invitees.map((value => {
-                            return {id: parseInt(value)}
-                        }))
+                this.axios.post(`${process.env.VUE_APP_API_URL_EVN}/v1/events`, {
+                    creatorId: this.creatorId,
+                    duration: this.duration,
+                    eventScope: this.eventScope,
+                    startsAt: new Date(this.startsAt).toJSON(),
+                    invitees: this.invitees.map(i => {
+                        return {
+                            userId: i.id,
+                            name: i.name + " " + i.surname
+                        }
                     })
-                }).then((response) => {
-                    console.log(response);
-                    this.$router.push("/events/read/");
-                });
+                })
+                    .then((response) => {
+                        console.log(response);
+                        this.$router.push("/events");
+                    });
             }
-        }
-        ,mounted(){
-            const utf8Decoder = new TextDecoder("utf-8");
-            fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
-                method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
-            }).then((response) => {
-                const reader = response.body.getReader();
-                reader.read().then(({done, value}) => {
-                    if (!done)
-                        this.user = JSON.parse(utf8Decoder.decode(value, {stream: true}));
-                    console.log(this.user)
-                });
-            });
+        },
+        async mounted(){
+            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`)
+                .then(response => {
+                    this.users = response.data
+                })
+                .catch(reason => {
+                    console.error(reason)
+                    this.$toast.error("Napaka pri pridobivanju podatkov", { duration: 3000 })
+                })
         }
     }
 </script>

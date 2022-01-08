@@ -1,5 +1,5 @@
 <template>
-    
+    <div class="m-5">Not implemented</div>
 </template>
 
 <script>

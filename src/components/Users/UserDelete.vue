@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-content-center">
+    <div class="d-flex justify-content-center align-content-center mt-5">
         <div class="d-flex justify-content-around">
             <form @submit.prevent="sendForm" style="text-align: left" method="post">
                 <h4>Delete user</h4>

@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-content-center">
+    <div class="d-flex justify-content-center align-content-center mt-5">
         <div class="d-flex justify-content-around">
             <form style="text-align: left" method="post" @submit.prevent="sendForm">
                 <h4>Update exercise</h4>
@@ -13,6 +13,7 @@
                     <label>Description</label>
                     <input v-model="description" class="form-control">
                 </div>
+
                 <div class="form-group">
                     <label>Name</label>
                     <div class="input-group">
@@ -53,9 +54,9 @@
                 id: "",
                 description: "",
                 name: "",
-                steps: []
+                steps: [],
+                videoUrl: null
             }
-
         },
         methods: {
             getExercise: function () {

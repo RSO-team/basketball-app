@@ -18,7 +18,8 @@
             return{
                 notification: ""
             }
-        },methods:{
+        },
+        methods:{
             readableString: function (s) {
                 let date = new Date(s);
                 return date.toDateString();
@@ -49,7 +50,6 @@
     #content {
         padding: 20px;
         min-height: 80%;
-        max-height: 90%;
         overflow-y: auto;
     }
 

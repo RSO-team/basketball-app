@@ -36,8 +36,6 @@
 <style scoped>
     #content {
         padding: 20px;
-        min-height: 80%;
-        max-height: 80%;
         overflow-y: auto;
     }
 

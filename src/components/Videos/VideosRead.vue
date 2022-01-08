@@ -4,20 +4,8 @@
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in videos" :key="item.id">
                 <p><b>Description: </b>{{item.description}}</p>
                 <p><b>Created at: </b>{{item.createdAt}}</p>
-                <a><b>Video link:</b> {{item.link}}</a>
-                <ul class="d-flex">
-                    <p><b>Tags: </b></p>
-                    <li v-for="(tag, index) in item.tags" :key="(tag.description, tag.id)">
-                        <p v-if="index >= 1">
-                            ,{{tag.description}}
-                        </p>
-                        <p v-else>
-                            {{tag.description}}
-                        </p>
-
-                    </li>
-                </ul>
-
+                <p><a :href="item.link" target="_blank">Video link</a></p>
+                <p><b>Tags: </b> {{ item.tags.map(i => i.description).join(', ') }}</p>
             </li>
         </ul>
     </div>
@@ -41,7 +29,6 @@
                 reader.read().then(({done, value}) => {
                     if (!done)
                         this.videos = JSON.parse(utf8Decoder.decode(value, {stream: true}));
-                    console.log(this.videos)
                 });
             });
 
@@ -52,8 +39,6 @@
 <style scoped>
     #content {
         padding: 20px;
-        min-height: 80%;
-        max-height: 90%;
         overflow-y: auto;
     }
 

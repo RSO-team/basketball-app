@@ -1,8 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col-4 offset-4">
-        <div class="mt-4">Hello to our lil project</div>
         <div class="mt-2">Go to our subpages:</div>
         <div>
           <router-link to="/users" class="d-block mt-2">

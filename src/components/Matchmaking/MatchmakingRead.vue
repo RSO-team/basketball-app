@@ -2,14 +2,9 @@
     <div id="content">
         <ul id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="match in matchmaking" :key="match.id">
-                <p><b>Date: </b>{{new Date(match.date).toUTCString()}}</p>
-                <p><b>Name: </b>{{match.name}}</p>
-                <ul class="d-flex flex-row flex-wrap">
-                    <p><b>Steps: </b></p>
-                    <li v-for="tag in match.match" :key="(tag.description, tag.id)">
-                        <p><b>User ID:</b>{{tag.userId}}</p>
-                    </li>
-                </ul>
+                <span class="my-1"><b>Date: </b>{{new Date(match.date).toUTCString()}}</span>
+                <span class="my-1"><b>Name: </b>{{match.name}}</span>
+                <span class="my-1"><b>Steps: </b> {{ match.match.map(i => i.userId).join(', ') }}</span>
             </li>
         </ul>
     </div>
@@ -38,7 +33,6 @@
                 reader.read().then(({done, value}) => {
                     if (!done)
                         this.matchmaking = JSON.parse(utf8Decoder.decode(value, {stream: true}));
-                    console.log(this.exercises)
                 });
             });
 
@@ -49,8 +43,6 @@
 <style scoped>
     #content {
         padding: 20px;
-        min-height: 80%;
-        max-height: 90%;
         overflow-y: auto;
     }
 
