@@ -42,9 +42,6 @@
             <span class="ms-1 d-none d-sm-inline">Activity tracking</span>
           </router-link>
         </div>
-        <div>
-          base api url: {{ base_url }}
-        </div>
       </div>
     </div>
   </div>
@@ -53,14 +50,6 @@
 <script>
 export default {
   name: "Home.vue",
-  computed: {
-    base_url() {
-      return process.env.API_URL;
-    }
-  },
-  created() {
-    console.log(process.env)
-  }
 }
 </script>
 
