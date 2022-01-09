@@ -51,6 +51,12 @@ import StatisticsRead from "@/components/Statistics/StatisticsRead";
 import StatisticsUpdate from "@/components/Statistics/StatisticsUpdate";
 import StatisticsDelete from "@/components/Statistics/StatisticsDelete";
 
+import LeaderboardsCreate from "@/components/Leaderboard/LeaderboardsCreate";
+import LeaderboardsDelete from "@/components/Leaderboard/LeaderboardsDelete";
+import LeaderboardsRead from "@/components/Leaderboard/LeaderboardsRead";
+import LeaderboardsUpdate from "@/components/Leaderboard/LeaderboardsUpdate";
+
+
 library.add(faUser, faBell, faCalendar, faBasketballBall, faRunning,faTrophy,faCrosshairs,faChartBar, faVideo,faPlus, faEnvelope);
 
 Vue.use(BootstrapVue);
@@ -104,9 +110,16 @@ const routes = [
   {path: '/stats/update', component: StatisticsUpdate, name: 'StatisticsUpdate'},
   {path: '/stats/delete', component: StatisticsDelete, name: 'StatisticsDelete'},
 
+  {path: '/leaderboards/create', component: LeaderboardsCreate, name: 'LeaderboardsCreate'},
+  {path: '/leaderboards', component: LeaderboardsRead, name: 'Leaderboards'},
+  {path: '/leaderboards/read', component: LeaderboardsRead, name: 'LeaderboardsRead'},
+  {path: '/leaderboards/update', component: LeaderboardsUpdate, name: 'LeaderboardsUpdate'},
+  {path: '/leaderboards/delete', component: LeaderboardsDelete, name: 'LeaderboardsDelete'},
+    
   {path: '/notifications/create', component:NotificationsCreate, name: 'NotificationsCreate'},
   {path: '/notifications', component: NotificationRead, name: 'Notification'},
   {path: '/notifications/read', component: NotificationRead, name: 'NotificationRead'},
+    
 ];
 const router = new VueRouter({
   routes,

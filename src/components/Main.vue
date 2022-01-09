@@ -39,7 +39,7 @@
                             </router-link>
                         </li>
                         <li class="nav-item w-100" :class="[{selected: this.selected === 'leaderboard'}]">
-                            <router-link :to="'/leaderboard'" class="nav-link align-middle px-3">
+                            <router-link :to="'/leaderboards'" class="nav-link align-middle px-3">
                                 <font-awesome-icon :icon="['fas', 'trophy']"></font-awesome-icon>
                                 <span class="ms-1 d-none d-sm-inline">Leaderboard</span>
                             </router-link>
