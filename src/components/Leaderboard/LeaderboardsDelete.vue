@@ -45,15 +45,15 @@
             }
         },methods:{
             async getLeaderboard(){
-                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard/`+this.leaderboardId).then(response=>{
+                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`).then(response=>{
                     this.leaderboard = response.data;
                 });
             },
             async sendForm(){
-                this.axios.delete(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard/`+this.leaderboardId)
+                await this.axios.delete(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`)
             }
         },async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
                 .then(response => {
                     this.leaderboards = response.data
                 })

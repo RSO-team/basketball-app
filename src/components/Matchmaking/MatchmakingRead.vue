@@ -1,12 +1,15 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="matchmaking.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="match in matchmaking" :key="match.id">
                 <span class="my-1"><b>Date: </b>{{new Date(match.date).toUTCString()}}</span>
                 <span class="my-1"><b>Name: </b>{{match.name}}</span>
                 <span class="my-1"><b>Steps: </b> {{ match.match.map(i => i.userId).join(', ') }}</span>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 

@@ -51,17 +51,21 @@
             }
         }, methods: {
             async getLeaderboard() {
-                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard/` + this.leaderboardId).then(response => {
+                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`).then(response => {
                     this.description = response.data.description;
                     this.scores = response.data.scores;
                     this.name = response.data.name;
                 });
             },
             async sendForm() {
-                this.axios.put(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard/` + this.leaderboardId, {name:this.name, description: this.description, scores: this.scores})
+                this.axios.put(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`, {
+                    name: this.name,
+                    description: this.description,
+                    scores: this.scores
+                })
             }
         }, async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
                 .then(response => {
                     this.leaderboards = response.data
                 })

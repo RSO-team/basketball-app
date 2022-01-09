@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="notification.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in notification" :key="item.id">
                 <p><b>To: </b>{{item.receiver}}</p>
                 <p><b>From: </b>{{item.sender}}</p>
@@ -8,6 +8,9 @@
                 <p><b>Send at: </b>{{new Date(item.sentAt).toUTCString()}}</p>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 

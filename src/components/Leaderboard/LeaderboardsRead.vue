@@ -1,7 +1,7 @@
 <template>
     <div id="content">
-        <ul id="dataList">
-            <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in stats" :key="item.id">
+        <ul v-if="leaderboard.length" id="dataList">
+            <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in leaderboard" :key="item.id">
                 <p><b>ID: </b>{{item.id}}</p>
                 <p><b>Name: </b>{{item.name}}</p>
                 <p><b>Description: </b>{{item.description}}</p>
@@ -12,6 +12,9 @@
                 </div>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 
@@ -24,7 +27,7 @@
             }
         },
         async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
                 .then(response => {
                     this.leaderboard = response.data
                 })

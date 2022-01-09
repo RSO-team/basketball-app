@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="exercises.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in exercises" :key="item.id">
                 <p><b>Description: </b>{{item.description}}</p>
                 <p><b>Name: </b>{{item.name}}</p>
@@ -13,6 +13,9 @@
                 </ul>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 

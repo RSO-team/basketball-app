@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="events.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in events" :key="item.id">
                 <span class="my-1"><b>Creator id: </b>{{ item.creatorId }}</span>
                 <span class="my-1"><b>Starts at: </b>{{ new Date(item.startsAt).toUTCString() }}</span>
@@ -9,6 +9,9 @@
                 <b-button class="mt-1" @click=" sendNotifications(item)">Pošlji obvestila udeležencem</b-button>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 

@@ -67,7 +67,7 @@
             },
             async sendForm() {
 
-                const res = this.axios.post(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboard`, {
+                const res = this.axios.post(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`, {
                     headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
                     body: JSON.stringify({
                         name: this.name,

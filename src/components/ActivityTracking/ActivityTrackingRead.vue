@@ -1,12 +1,15 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="activities.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in activities" :key="item.id">
                 <p><b>Name: </b>{{item.name}}</p>
                 <p><b>Experience: </b>{{item.experience}}</p>
                 <a><b>User ID:</b> {{item.userId}}</a>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 

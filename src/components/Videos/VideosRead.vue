@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="videos.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in videos" :key="item.id">
                 <p><b>Description: </b>{{item.description}}</p>
                 <p><b>Created at: </b>{{item.createdAt}}</p>
@@ -8,6 +8,9 @@
                 <p><b>Tags: </b> {{ item.tags.map(i => i.description).join(', ') }}</p>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 
@@ -16,7 +19,7 @@
         name: "VideosRead",
         data: function () {
             return {
-                videos: null
+                videos: []
             }
         },
         mounted() {

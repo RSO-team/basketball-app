@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <ul id="dataList">
+        <ul v-if="user.length" id="dataList">
             <li class="bg-dark d-flex flex-column align-content-around" style="color: white" v-for="item in user"
                 :key="item.id">
                 <span><b>ID: </b>{{ item.id }}</span>
@@ -11,6 +11,9 @@
                 <b-button class="btn-danger mt-2 w-25" @click="deleteUser(item.id)">Delete</b-button>
             </li>
         </ul>
+        <div v-else>
+            No data to show
+        </div>
     </div>
 </template>
 
@@ -19,7 +22,7 @@ export default {
     name: "UsersRead",
     data: function () {
         return {
-            user: null
+            user: []
         }
     },
     methods: {
