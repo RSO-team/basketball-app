@@ -64,7 +64,11 @@
 
                 const res = await fetch(`${process.env.VUE_APP_API_URL_VID}/v1/videos`, {
                     method: "POST",
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                     body: JSON.stringify({
                         link: this.link,
                         description: this.description,

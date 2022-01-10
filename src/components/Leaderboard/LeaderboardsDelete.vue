@@ -45,15 +45,33 @@
             }
         },methods:{
             async getLeaderboard(){
-                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`).then(response=>{
+                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                }).then(response=>{
                     this.leaderboard = response.data;
                 });
             },
             async sendForm(){
-                await this.axios.delete(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`)
+                await this.axios.delete(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                })
             }
         },async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.leaderboards = response.data
                 })

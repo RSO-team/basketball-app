@@ -33,7 +33,7 @@ export default {
         deleteUser(id) {
             this.axios.delete(`${process.env.VUE_APP_API_URL_USR}/v1/users/${id}`, {
                 headers: {
-                    apiToken: process.env.VUE_APP_API_TOKEN,
+                    apiToken: this.$store.state.apiToken,
                     "Access-Control-Allow-Origin": "*",
                     "content-type": 'application/json'
                 }
@@ -48,7 +48,11 @@ export default {
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

@@ -62,7 +62,11 @@
 
                 await fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users/${this.id}`, {
                     method: "GET",
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                 }).then(response => {
                     const reader = response.body.getReader();
                     reader.read().then(({done, value}) => {
@@ -86,7 +90,11 @@
             async sendForm() {
                 await fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users/${this.id}`, {
                     method: "DELETE",
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                 }).then((response) => {
                     console.log(response);
                     this.$router.push("/users/read/");
@@ -97,7 +105,11 @@
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
-                headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

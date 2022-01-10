@@ -68,7 +68,11 @@
             async sendForm() {
 
                 const res = this.axios.post(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`, {
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                     body: JSON.stringify({
                         name: this.name,
                         description: this.description,
@@ -82,7 +86,13 @@
             }
         },
         async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.users = response.data
                 })

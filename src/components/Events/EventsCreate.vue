@@ -60,6 +60,12 @@
                             name: i.name + " " + i.surname
                         }
                     })
+                }, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
                 })
                     .then((response) => {
                         console.log(response);
@@ -68,7 +74,13 @@
             }
         },
         async mounted(){
-            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.users = response.data
                 })

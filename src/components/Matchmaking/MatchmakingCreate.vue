@@ -39,7 +39,11 @@
             async sendForm() {
                 await fetch(`${process.env.VUE_APP_API_URL_MCH}/v1/matchmaking`, {
                     method: "POST",
-                    headers: {"content-type": 'application/json', 'Access-Control-Allow-Origin': '*'},
+                    headers: {
+                         "Access-Control-Allow-Origin": "*",
+                         "content-type": 'application/json',
+                         "apiToken": this.$store.state.apiToken
+                     },
                     body: JSON.stringify({
                         name: this.name,
                         date: new Date(this.date).toJSON(),
@@ -57,7 +61,11 @@
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

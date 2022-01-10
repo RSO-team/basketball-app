@@ -35,7 +35,13 @@
         },
         methods:{
             async getStat(){
-                this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId).
+                this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                }).
                 then(response =>{
                     this.userId = response.data.userId;
                     this.category = response.data.category;
@@ -46,11 +52,23 @@
                 })
             },
             sendForm(){
-                this.axios.post(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId)
+                this.axios.post(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                })
             }
         },
         async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.stats = response.data
                 })

@@ -62,6 +62,12 @@
                                 <span class="ms-1 d-none d-sm-inline">Activity tracking</span>
                             </router-link>
                         </li>
+                        <li class="nav-item w-100" :class="[{selected: this.selected === 'token'}]">
+                            <router-link :to="'/token'" class="nav-link align-middle px-3">
+                                <font-awesome-icon :icon="['fas', 'key']"></font-awesome-icon>
+                                <span class="ms-1 d-none d-sm-inline">API Token management</span>
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,10 +1,24 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faUser, faBell, faCalendar, faBasketballBall, faRunning,faTrophy,faCrosshairs,faChartBar, faVideo, faPlus, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faBell,
+  faCalendar,
+  faBasketballBall,
+  faRunning,
+  faTrophy,
+  faCrosshairs,
+  faChartBar,
+  faVideo,
+  faPlus,
+  faEnvelope,
+  faKey
+} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueRouter from 'vue-router'
@@ -55,10 +69,12 @@ import LeaderboardsCreate from "@/components/Leaderboard/LeaderboardsCreate";
 import LeaderboardsDelete from "@/components/Leaderboard/LeaderboardsDelete";
 import LeaderboardsRead from "@/components/Leaderboard/LeaderboardsRead";
 import LeaderboardsUpdate from "@/components/Leaderboard/LeaderboardsUpdate";
+import SetApiToken from "@/components/Token/SetApiToken";
 
 
-library.add(faUser, faBell, faCalendar, faBasketballBall, faRunning,faTrophy,faCrosshairs,faChartBar, faVideo,faPlus, faEnvelope);
+library.add(faUser, faBell, faCalendar, faBasketballBall, faRunning, faTrophy, faCrosshairs, faChartBar, faVideo, faPlus, faEnvelope, faKey);
 
+Vue.use(Vuex)
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueRouter);
@@ -119,6 +135,7 @@ const routes = [
   {path: '/notifications/create', component:NotificationsCreate, name: 'NotificationsCreate'},
   {path: '/notifications', component: NotificationRead, name: 'Notification'},
   {path: '/notifications/read', component: NotificationRead, name: 'NotificationRead'},
+  {path: '/token', component: SetApiToken, name: 'Token'}
     
 ];
 const router = new VueRouter({
@@ -129,7 +146,25 @@ const router = new VueRouter({
       : '/',
 });
 
+const store = new Vuex.Store({
+  state: {
+    apiToken: process.env.VUE_APP_API_TOKEN,
+  },
+  mutations: {
+    setToken(state, apiToken) {
+      state.apiToken = apiToken
+    },
+  },
+  actions: {
+    async getToken() {
+        this.commit('setFiles', process.env.VUE_APP_API_TOKEN)
+    },
+  },
+})
+
+
 new Vue({
+  store,
   render: h => h(App),
   router
 }).$mount('#app');

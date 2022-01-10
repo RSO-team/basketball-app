@@ -18,8 +18,8 @@
     export default {
         name: "NotificationRead",
         data: function () {
-            return{
-                notification: ""
+            return {
+                notification: []
             }
         },
         methods:{
@@ -35,7 +35,7 @@
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "content-type": 'application/json',
-                    "apiToken": process.env.VUE_APP_API_TOKEN
+                    "apiToken": this.$store.state.apiToken
                 }
             }).then((response) => {
                 const reader = response.body.getReader();

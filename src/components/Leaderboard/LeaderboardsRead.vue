@@ -27,7 +27,13 @@
             }
         },
         async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.leaderboard = response.data
                 })

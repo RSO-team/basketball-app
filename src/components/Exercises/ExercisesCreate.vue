@@ -128,7 +128,7 @@ export default {
                     headers: {
                         "Access-Control-Allow-Origin": "*",
                         "content-type": 'application/json',
-                        "apiToken": process.env.VUE_APP_API_TOKEN
+                        "apiToken": this.$store.state.apiToken
                     }
                 })
                 .then((response) => {

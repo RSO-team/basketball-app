@@ -63,7 +63,11 @@
                 const utf8Decoder = new TextDecoder("utf-8");
                 fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "GET",
-                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                    headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
                 }).then((response) => {
                     const reader = response.body.getReader();
                     reader.read().then(({done, value}) => {
@@ -88,7 +92,11 @@
                 this.steps = this.getSteps();
                 fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises/${this.id}`, {
                     method: "PUT",
-                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                     body: JSON.stringify({
                         description: this.description,
                         name: this.name,
@@ -105,7 +113,11 @@
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_XRC}/v1/exercises`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

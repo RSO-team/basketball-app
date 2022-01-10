@@ -56,7 +56,11 @@
             async sendForm() {
                 fetch(`${process.env.VUE_APP_API_URL_EVN}/v1/events/${this.eventId}`, {
                     method: "DELETE",
-                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'},
+                    headers: {
+                 "Access-Control-Allow-Origin": "*",
+                 "content-type": 'application/json',
+                 "apiToken": this.$store.state.apiToken
+             },
                 }).then(()=>{
                     this.$router.push("/events/read");
                 });
@@ -66,7 +70,11 @@
 
                 fetch(`${process.env.VUE_APP_API_URL_EVN}/v1/events/${this.eventId}`, {
                     method: "GET",
-                    headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                    headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
                 }).then((response) => {
                     const reader = response.body.getReader();
                     reader.read().then(({done, value}) => {
@@ -95,7 +103,11 @@
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {
@@ -105,7 +117,11 @@
             });
             fetch(`${process.env.VUE_APP_API_URL_EVN}/v1/events`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

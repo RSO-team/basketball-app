@@ -24,14 +24,8 @@
                         <input v-model="userId" class="form-control" type="text">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Api Token</label>
-                    <div class="input-group">
-                        <input v-model="apiToken" class="form-control" type="text">
-                    </div>
-                </div>
                 <br>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Send</button>
             </form>
         </div>
     </div>
@@ -57,7 +51,7 @@
                         headers: {
                           "Access-Control-Allow-Origin": "*",
                           "content-type": 'application/json',
-                          "apiToken": process.env.VUE_APP_API_TOKEN
+                          "apiToken": this.$store.state.apiToken
                         },
                         body: JSON.stringify({
                             from: this.from,
@@ -76,7 +70,11 @@
             const utf8Decoder = new TextDecoder("utf-8");
             fetch(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
                 method: "GET",
-                headers: {"Access-Control-Allow-Origin": "*", "content-type": 'application/json'}
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "content-type": 'application/json',
+                "apiToken": this.$store.state.apiToken
+            }
             }).then((response) => {
                 const reader = response.body.getReader();
                 reader.read().then(({done, value}) => {

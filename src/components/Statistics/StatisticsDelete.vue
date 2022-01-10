@@ -36,7 +36,13 @@
         },
         methods:{
             async getStat(){
-                this.axios.delete(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId).
+                this.axios.delete(`${process.env.VUE_APP_API_URL_STT}/v1/stats/`+this.statId, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                }).
                     then(response =>{
                     console.error(response);
                     this.$toast.success("Izbrisano", {duration:2000});
@@ -47,7 +53,13 @@
             }
         },
         async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_STT}/v1/stats`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.stats = response.data;
                 })

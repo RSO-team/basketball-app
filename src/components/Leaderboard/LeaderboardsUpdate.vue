@@ -51,7 +51,13 @@
             }
         }, methods: {
             async getLeaderboard() {
-                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`).then(response => {
+                await this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards/${this.leaderboardId}`, {
+                    headers: {
+                        apiToken: this.$store.state.apiToken,
+                        "Access-Control-Allow-Origin": "*",
+                        "content-type": 'application/json'
+                    }
+                }).then(response => {
                     this.description = response.data.description;
                     this.scores = response.data.scores;
                     this.name = response.data.name;
@@ -65,7 +71,13 @@
                 })
             }
         }, async mounted() {
-            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`)
+            this.axios.get(`${process.env.VUE_APP_API_URL_LED}/v1/leaderboards`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            })
                 .then(response => {
                     this.leaderboards = response.data
                 })
@@ -73,7 +85,13 @@
                     console.error(reason)
                     this.$toast.error("Napaka pri pridobivanju podatkov", {duration: 3000})
                 });
-            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`).then(response => {
+            this.axios.get(`${process.env.VUE_APP_API_URL_USR}/v1/users`, {
+                headers: {
+                    apiToken: this.$store.state.apiToken,
+                    "Access-Control-Allow-Origin": "*",
+                    "content-type": 'application/json'
+                }
+            }).then(response => {
                 this.users = response.data;
             })
         }
