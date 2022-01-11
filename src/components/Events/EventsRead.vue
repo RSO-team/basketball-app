@@ -5,7 +5,7 @@
                 <span class="my-1"><b>Creator id: </b>{{ item.creatorId }}</span>
                 <span class="my-1"><b>Starts at: </b>{{ new Date(item.startsAt).toUTCString() }}</span>
                 <span class="my-1"><a><b>Event scope: </b> {{ item.eventScope }}</a></span>
-                <span class="my-1"><b>Invitees: </b> {{ item.invitees.map(i => i.userId).join(', ') }}</span>
+                <span class="my-1"><b>Invitees: </b> {{ item.invitees.map(i => i.name || i.userId).join(', ') }}</span>
                 <b-button class="mt-1" @click=" sendNotifications(item)">Pošlji obvestila udeležencem</b-button>
             </li>
         </ul>
