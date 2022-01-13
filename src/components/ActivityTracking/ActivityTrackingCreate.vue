@@ -56,7 +56,7 @@
                     })
                 }).then((response) => {
                     console.log(response);
-                    this.$router.push("/users/read/");
+                    this.$router.push("/activity/read/");
                 });
             }
         },mounted() {
